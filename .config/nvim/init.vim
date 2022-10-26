@@ -6,6 +6,7 @@ call plug#begin()
 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/vim-airline/vim-airline'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
