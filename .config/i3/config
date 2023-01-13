@@ -12,14 +12,14 @@
 set $mod Mod4
 
 # bwm bind to connect to internet
-bindsym $mod+o exec "bwm" 
+bindsym $mod+o exec "/home/kian/Documents/bwm/bin/release/bwm" 
 
 # Windows like screenshot
 bindsym Print          exec --no-startup-id maim -s -u | xclip -selection clipboard -t image/png -i
 
 hide_edge_borders smart
 gaps inner 10
-gaps outer 2
+gaps outer -5
 smart_gaps on
 
 
@@ -33,7 +33,7 @@ bindsym $mod+x exec "betterlockscreen -l"
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
-client.focused #00 #00 #00 #00 #d65d0e 
+client.focused #d65d0e #282828 #00 #00 #d65d0e
 #client.unfocused #00 #00 #00 #00 #00
 
 default_border none 
@@ -48,8 +48,13 @@ bindsym $mod+Shift+e exec "rofi -show emoji"
 bindsym $mod+Shift+c exec "rofi -show calc -modi calc -no-show-match -no-sort"
 bindsym $mod+Shift+w exec "rofi -show window"
 
+# hdmi set and reset
 
-# for_window [class="^.*"] border pixel 5 
+bindsym $mod+Shift+z exec "xrandr --output HDMI1 --auto --above eDP1"
+bindsym $mod+Shift+x exec "xrandr --output HDMI1 --off"
+
+# for_window [class="^.*"] border pixel 5
+for_window [class="bwm"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -190,7 +195,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # reload the configuration file
 bindsym $mod+Shift+Ctrl+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+Ctrl+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -219,15 +224,15 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+Shift+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id "picom --experimental-backends"
+exec_always --no-startup-id "picom"
 exec_always --no-startup-id "setxkbmap -option 'caps:escape'"
-# exec ~/Documents/randomProg/bingwallpaper/bing-wallpaper.py
+# exec_always --no-startup-id ~/Documents/randomProg/bingwallpaper/bing-wallpaper.py
 exec_always --no-startup-id "setxkbmap fi"
-exec_always --no-startup-id "feh --bg-fill Downloads/forest.jpg"
-#exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id "feh --bg-scale Downloads/walls/gruvbox/future-town.jpg"
+# exec --no-startup-id nitrogen --restore
