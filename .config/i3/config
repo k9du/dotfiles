@@ -8,18 +8,17 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # bwm bind to connect to internet
-bindsym $mod+o exec "/home/kian/Documents/bwm/bin/release/bwm" 
+bindsym $mod+o exec "/home/kian/Documents/bwm/bin/Release/bwm" 
 
 # Windows like screenshot
 bindsym Print          exec --no-startup-id maim -s -u | xclip -selection clipboard -t image/png -i
 
 hide_edge_borders smart
-gaps inner 10
-gaps outer -5
+gaps inner 20
+gaps outer -3
 smart_gaps on
 
 
@@ -33,13 +32,13 @@ bindsym $mod+x exec "betterlockscreen -l"
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
-client.focused #d65d0e #282828 #00 #00 #d65d0e
+client.focused #ebdbb2 #282828 #00 #00 #ebdbb2
 #client.unfocused #00 #00 #00 #00 #00
 
 default_border none 
 default_floating_border none
 
-for_window [all] border pixel 2 
+for_window [all] border pixel 3 
 
 # rofi
 
@@ -50,11 +49,13 @@ bindsym $mod+Shift+w exec "rofi -show window"
 
 # hdmi set and reset
 
-bindsym $mod+Shift+z exec "xrandr --output HDMI1 --auto --above eDP1"
+        bindsym $mod+Shift+z exec "xrandr --output HDMI1 --rate 50 --mode 3440x1440 --above eDP1" 
+# && xrandr --output DP1-2 --auto --rate 60 --rotate left --right-of DP2-1"
 bindsym $mod+Shift+x exec "xrandr --output HDMI1 --off"
 
 # for_window [class="^.*"] border pixel 5
 for_window [class="bwm"] floating enable
+for_window [title="Android*"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -92,7 +93,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+q kill
@@ -102,7 +103,6 @@ bindsym $mod+q kill
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -178,8 +178,7 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
-
+bindsym $mod+0 workspace number $ws1
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -211,6 +210,7 @@ mode "resize" {
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym odiaeresis resize grow width 10 px or 10 ppt
+        bindsym odiaeresis resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -234,5 +234,7 @@ exec_always --no-startup-id "picom"
 exec_always --no-startup-id "setxkbmap -option 'caps:escape'"
 # exec_always --no-startup-id ~/Documents/randomProg/bingwallpaper/bing-wallpaper.py
 exec_always --no-startup-id "setxkbmap fi"
-exec_always --no-startup-id "feh --bg-scale Downloads/walls/gruvbox/future-town.jpg"
+exec_always --no-startup-id "feh --bg-fill Downloads/walls/gruvbox/11.png"
+# exec_always --no-startup-id "redshift 
+exec --no-startup-id "redshift -l 61.49911:23.78712"
 # exec --no-startup-id nitrogen --restore
